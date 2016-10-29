@@ -24,10 +24,10 @@ struct Material {
 
 // single light no need
 struct Light {
-  glm::vec4 ambient;
-  glm::vec4 diffuse;
-  glm::vec4 specular;
-  glm::vec4 lightPos;
+  //glm::vec4 ambient;
+  //glm::vec4 diffuse;
+  //glm::vec4 specular;
+  //glm::vec4 lightPos;
 };
 
 struct Camera {
@@ -35,16 +35,16 @@ struct Camera {
   GLfloat perspective_ratio;
   GLfloat perspective_near;
   GLfloat perspective_far;
-  glm::vec3 eye;
-  glm::vec3 center;
-  glm::vec3 up;
+ // glm::vec3 eye;
+  //glm::vec3 center;
+  //glm::vec3 up;
 };
 
 struct Faces {
     vector<GLint> num_vertices_list;
     vector<GLuint> indices_list;
     vector<GLuint> triangulated_indices_list;
-    vector<glm::vec3> triangulated_normal_list;
+    //vector<glm::vec3> triangulated_normal_list;
 };
 
 /*

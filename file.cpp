@@ -1,20 +1,45 @@
 
-#include <stdafx.h>
+#include "file.h"
 #include <iostream>
 #include <ctime>
 #include <fstream>
 #include <string>
+#include <string>
+#include <sstream>
+#include <iostream>
 using namespace std;
-int main(int argc,  char *argv)
+int main(int argc, char* argv[])
+
 {
-    for (int i = 1; i < argc; i++) {
+    int vertex_num=0;
+    int face_num=0;
         
-        String name = *argv[i]; //e.g. Goku
-        String type = *argv[i]; //e.g. Saiyan, Human, etc
-        String match = * argv[i]; //Goku Piccolo
-        //I don't think any of the statements above would be correct.
-        //I'm just searching for how to use string values of txt files in such a way
-        
-        cout << i << " " << endl; //I'd like to show names, types or matchs inside the double quotation mark.
+    string name = argv[1];
+    cout <<name<< endl;
+    
+    std::ifstream file(name);
+    std::string str;
+    std::getline(file, str);
+    std::getline(file, str);
+   stringstream fs(str);
+    Mesh newMesh;
+    
+    fs>>vertex_num>>face_num;
+    cout<<"face"<<face_num<<endl;
+    cout<<"vertex"<<vertex_num<<endl;
+    newMesh.numVertices =vertex_num;
+    newMesh.numFaces =face_num;
+     cout<<"vertex number"<<endl;
+    for(int i = 0; i < vertex_num; i++){
+        std::getline(file, str);
+    cout<<str<<endl;
     }
+    cout<<"face number"<<endl;
+    for(int i = 0; i <face_num; i++){
+        std::getline(file, str);
+        cout<<str<<endl;
+    }
+
+    file.close();
+    return 0;
 }
