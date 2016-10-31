@@ -1,5 +1,5 @@
-#ifndef __FILE.H__
-#define __FILE.H__
+#ifndef FILE_H
+#define FILE_H
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -9,11 +9,12 @@
 #include "common.h"
 #include <vector>
 #include <cstring>
+using namespace std;
 
 struct Vertex {
   glm::vec3 position;
   glm::vec3 normal;
-};
+}
 
 struct Material {
   glm::vec4 ambient;
@@ -24,50 +25,38 @@ struct Material {
 
 // single light no need
 struct Light {
-  //glm::vec4 ambient;
-  //glm::vec4 diffuse;
-  //glm::vec4 specular;
-  //glm::vec4 lightPos;
+  glm::vec4 ambient;
+  glm::vec4 diffuse;
+  glm::vec4 specular;
+  glm::vec4 lightPos;
 };
 
 struct Camera {
+  GLfloat ortho_left;
+  GLfloat ortho_right;
+  GLfloat ortho_bottom;
+  GLfloat ortho_top;
   GLfloat perspective_angle;
   GLfloat perspective_ratio;
-  GLfloat perspective_near;
-  GLfloat perspective_far;
- // glm::vec3 eye;
-  //glm::vec3 center;
-  //glm::vec3 up;
+  GLfloat near;
+  GLfloat far;
+  glm::vec3 eye;
+  glm::vec3 center;
+  glm::vec3 up;
 };
 
 struct Faces {
     vector<GLint> num_vertices_list;
     vector<GLuint> indices_list;
     vector<GLuint> triangulated_indices_list;
-    //vector<glm::vec3> triangulated_normal_list;
+    vector<glm::vec3> normal_list;
+};
+struct Mesh{
+    GLint numVertices;
+    GLint numFaces;
+    GLint numEdges;
+    vector<Vertex> vertices;
+    Faces faces;
 };
 
-/*
-struct Face {
-    GLint face_numV;
-    vector<GLuint> indices;
-    vector<GLuint> triangulated_indices;
-    glm::vec3 face_normal;
-};
-*/
-
-class Mesh {
-public:
-  GLint numVertices;
-  GLint numFaces;
-  GLint numEdges;
-  vector<Vertex> vertices;
-  Faces faces;
-  //vector<Face> faces;
-public:
-  GLuint VAO, VBO, EBO;
-  Mesh();
-  void bind();
-  void calculate_normal();
-  void draw();
-};
+#endif
