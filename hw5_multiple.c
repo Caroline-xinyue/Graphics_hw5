@@ -472,10 +472,34 @@ void update() {
     update_mesh();
 }
 
+int row_col(int meshNum){
+    if(pow(sqrt(meshNum),2)==meshNum){
+        return sqrt(meshNum);
+    } else {
+        return floor(sqrt(meshNum))+1;
+    }
+}
+
+glm::vec3 translatePos(int meshNum,int index, Glfloat width,Glfloat height){
+    int num = row_col(meshNum);
+    int row = k % num;
+    int col = k / num;
+    GLfloat gridWidth = width/((GLfloat)num*2);
+    GLfloat gridHeight= height/((GLfloat)num*2);
+    glm::vec3 translateVec;
+    translateVec.x = 2*gridWidth*row - gridWidth;
+    translateVec.y = 2*gridHeight*col- gridHeight;
+    translateVec.z = 0;
+}
+
 /*
 void draw_mesh(int k) {
+    GLuint num = row_col(num_Meshes);
+    GLfloat grid_size = WIDTH/(GLfloat)num;
     Model = glm::mat4(1.0f);
-    Model = glm::translate(Model, glm::vec3(0, 20, 0));
+    Model = glm::translate(Model, glm::vec3(-meshes[k].center.x, -meshes[k].center.y, -meshes[k].center.z));
+    Model = glm::scale(Model, glm::vec3(grid_size/xLen, grid_size/yLen, grid_size/zLen);
+    Model = glm::translate(Model, translatePos(numMeshes, k, WIDTH, HEIGHT));
     GLuint modelID = glGetUniformLocation(program, "vModel");
     glUniformMatrix4fv(modelID, 1, GL_FALSE, glm::value_ptr(Model));
 	if(drawMode == VERTEX) {
