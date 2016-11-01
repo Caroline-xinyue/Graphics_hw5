@@ -6,16 +6,22 @@ in vec3 vNormal;
 out vec4 color; // vertex shade
 
 // light and material properties
-uniform vec4 vAmbientProduct, vDiffuseProduct, vSpecularProduct;
-uniform vec4 vLightPosition;
-uniform float vShininess;
+//uniform vec4 vAmbientProduct, vDiffuseProduct, vSpecularProduct;
 //uniform mat4 vModelView;
 uniform mat4 vModel;
 uniform mat4 vView;
 uniform mat4 vProjection;
+//uniform vec4 vLightPosition;
+//uniform float vShininess;
 
 void main() {
+	vec4 vAmbientProduct = vec4(0.0215, 0.1745, 0.0215, 1.0);
+	vec4 vDiffuseProduct = vec4(0.07568, 0.61424, 0.07568, 1.0);
+	vec4 vSpecularProduct = vec4(0.633, 0.727811, 0.633, 1.0);
+	float vShininess = 0.6;
+	vec4 vLightPosition = vec4(0.0, 50.0, 0.0, 1.0);
 	mat4 vModelView = vView * vModel;
+	vLightPosition = vView * vLightPosition;
 	//vertex position into eye coordinates
 	vec3 pos = (vModelView * vPosition).xyz;
 

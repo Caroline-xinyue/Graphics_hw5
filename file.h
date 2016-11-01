@@ -12,9 +12,13 @@
 using namespace std;
 
 struct Vertex {
-  glm::vec3 position;
-  glm::vec3 normal;
-}
+    glm::vec3 position;
+    glm::vec3 normal;
+};
+struct Vertex_ref {
+    glm::vec3 *position;
+    glm::vec3 normal;
+};
 
 struct Material {
   glm::vec4 ambient;
@@ -46,16 +50,26 @@ struct Camera {
 };
 
 struct Faces {
-    vector<GLint> num_vertices_list;
+    vector<GLuint> face_index_list;
+    vector<GLuint> num_vertices_list;
     vector<GLuint> indices_list;
     vector<GLuint> triangulated_indices_list;
     vector<glm::vec3> normal_list;
 };
+
 struct Mesh{
-    GLint numVertices;
-    GLint numFaces;
-    GLint numEdges;
+    GLuint numRepeats;
+    GLuint numVertices;
+    GLuint numFaces;
+    GLuint numEdges;
+    GLfloat xLen;
+    GLfloat yLen;
+    GLfloat zLen;
+    glm::vec3 length;
+    glm::vec3 center;
     vector<Vertex> vertices;
+    vector<Vertex_ref> vertices_for_flat;
+    vector<Vertex_ref> vertices_for_line;
     Faces faces;
 };
 

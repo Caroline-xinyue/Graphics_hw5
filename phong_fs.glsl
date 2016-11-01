@@ -2,17 +2,22 @@
 
 // fragment shader
 out vec4  fColor;
+
 // per-fragment interpolated values from the vertex shader
 in vec3 fN;
 in vec3 fL;
 in vec3 fE;
 
-uniform vec4 vAmbientProduct, vDiffuseProduct, vSpecularProduct;
+//uniform vec4 vAmbientProduct, vDiffuseProduct, vSpecularProduct;
 //uniform mat4 vModelView;
-uniform vec4 vLightPosition;
-uniform float vShininess;
+//uniform vec4 vLightPosition;
+//uniform float vShininess;
 
 void main() {
+	vec4 vAmbientProduct = vec4(0.0215, 0.1745, 0.0215, 1.0);
+	vec4 vDiffuseProduct = vec4(0.07568, 0.61424, 0.07568, 1.0);
+	vec4 vSpecularProduct = vec4(0.633, 0.727811, 0.633, 1.0);
+	float vShininess = 0.6;
 	// Normalize the input lighting vectors
 	vec3 N = normalize(fN);
 	vec3 E = normalize(fE);
